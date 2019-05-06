@@ -1,0 +1,9 @@
+#!/usr/bin/env lsd
+
+include 'config'
+println "Getting metadata from $url"
+WebService client = new ServiceClient(url, 'tester', 'tester')
+Data data = new Data(Uri.TEXT, 'Machine learning is not a biological process.')
+
+println client.getMetadata()
+

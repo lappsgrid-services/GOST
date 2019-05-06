@@ -1,0 +1,8 @@
+*.iml
+*.ipr
+*.iws
+.idea/
+target/
+VERSION
+Version.java
+src/main/docker/*.war

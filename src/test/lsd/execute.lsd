@@ -1,0 +1,17 @@
+#!/usr/bin/env lsd
+
+include 'config'
+
+println "Calling service at $url"
+//String text = 'Interacts with the endoplasmic reticulum protein HSPA5 which activates the IRE1-XBP1 pathway of the unfolded protein response.'
+String text = "invoke an immune response."
+WebService client = new ServiceClient(url, 'tester', 'tester')
+Data data = new Data(Uri.TEXT, text)
+
+if (args.size() > 0) {
+    String type = args['type'] ?: 'tag'
+    data.setParameter("type", type)
+}
+
+println client.execute(data.asJson())
+

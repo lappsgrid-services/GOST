@@ -1,0 +1,10 @@
+/*
+ * Global variables used across multiple scripts.
+ */
+
+urls = [
+    local: "http://localhost:8080/GostService/1.0.0-SNAPSHOT/services/GostService",
+    remote:  "http://129.114.17.83:8000/GostService/1.0.0-SNAPSHOT/services/GostService",
+    lapps: "http://vassar.lappsgrid.org/invoker/anc:gost_1.0.0-SNAPSHOT"
+]
+url = urls[args?.server ?: 'local']
