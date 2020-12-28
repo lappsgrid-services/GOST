@@ -10,7 +10,7 @@
     </parent>
     <groupId>edu.vassar.cs.lappsgrid</groupId>
     <artifactId>gost</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>war</packaging>
     <name>GOST</name>
     <description>LAPP service for the Gene Ontology Semantic Tagger (GOST)</description>

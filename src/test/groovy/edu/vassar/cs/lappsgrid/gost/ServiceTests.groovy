@@ -10,6 +10,7 @@ import org.lappsgrid.api.WebService
 import org.lappsgrid.metadata.ServiceMetadata
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.Serializer
+import org.lappsgrid.serialization.lif.Annotation
 import org.lappsgrid.serialization.lif.Container
 import org.lappsgrid.serialization.lif.Contains
 import org.lappsgrid.serialization.lif.View
@@ -41,7 +42,7 @@ class ServiceTests {
         Data data = Serializer.parse(json)
         assert Uri.META == data.discriminator
         ServiceMetadata md = new ServiceMetadata((Map) data.payload)
-        assert Version.version == md.getVersion()
+        assert md.getVersion().startsWith(Version.version)
         assert "http://www.lappsgrid.org" == md.getVendor()
     }
 
@@ -139,6 +140,13 @@ class ServiceTests {
 
         View view = container.views[1]
         assert view.contains(TagProcessor.GOTAG)
+        view.annotations.each { Annotation a ->
+            assert Processor.TAG == a.atType
+            String type = a.features.type
+            assert null != type
+            assert (type == Uri.TAGS_SEM_USAS || type == Uri.TAGS_SEM_BIO_GO)
+        }
+        println json
     }
 
     @Test

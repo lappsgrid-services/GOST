@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  gost:
+    image: docker.lappsgrid.org/lappsgrid/gost
+    ports:
+      - 8000:8080
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s

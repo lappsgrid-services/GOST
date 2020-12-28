@@ -28,8 +28,7 @@ class TagProcessor extends Processor {
 
     Annotation createAnnotation(String tag) {
         Annotation tagged = tagView.newAnnotation("gotag-${nextId}".toString(), TAG)
-        tagged.features.type = GOTAG
-//        tagged.features.type = GOTAG
+        tagged.features.type = Discriminators.Uri.TAGS_SEM_BIO_GO
         return tagged
     }
 }

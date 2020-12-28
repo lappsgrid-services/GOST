@@ -16,7 +16,7 @@ import org.lappsgrid.serialization.lif.View
 @Slf4j("logger")
 abstract class Processor {
 
-    static final String TAG = "http://vocab.lappsgrid.org/SemanticTag"
+    static final String TAG = Uri.SEMANTIC_TAG
     static final String USASTAG = TAG + "#USAS"
     static final String PRODUCER = "GOST"
 
@@ -39,11 +39,13 @@ abstract class Processor {
         this.tokenView = container.newView()
         tokenView.addContains(Uri.TOKEN, 'GOST', "token")
         Contains contains = tokenView.addContains(Uri.POS, 'GOST', "pos")
-        contains.put(Metadata.Token.POS_TAG_SET, Uri.TAGS_POS + '#claws7')
+        contains.put(Metadata.Token.POS_TAG_SET, Uri.TAGS_POS_CLAWS7)
         tokenView.addContains(Uri.LEMMA, 'GOST', 'lemma')
 
         createView()
+        tagView.addContains(TAG, PRODUCER, "semtag")
         contains = tagView.addContains(USASTAG, PRODUCER, 'http://ucrel.lancs.ac.uk/usas/semtags.txt')
+        contains.put(Metadata.SemanticTag.TAG_SET, Uri.TAGS_SEM_USAS)
         contains.dependency(tokenView.id, Uri.TOKEN)
 
         index = new Index()
@@ -84,8 +86,8 @@ abstract class Processor {
         Annotation ann = tagView.newAnnotation("semtag-" + nextId, TAG)
         ann.start = a.start
         ann.end = a.end
-        a.features.with {
-            put('type', USASTAG)
+        ann.features.with {
+            put('type', Discriminators.Uri.TAGS_SEM_USAS)
             put('targets', [])
             put('mwe', [])
         }

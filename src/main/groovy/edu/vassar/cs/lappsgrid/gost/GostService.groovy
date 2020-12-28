@@ -106,11 +106,17 @@ class GostService implements WebService {
             return
         }
 
+        String versionString = Version.getVersion()
+        InputStream stream = this.class.getResourceAsStream("/build")
+        if (stream != null) {
+            versionString += " Build ${stream.text.trim()}"
+        }
+
         ServiceMetadata md = new ServiceMetadataBuilder()
             .name('GOST')
             .description('Gene Ontology Semantic Tagger')
             .vendor("http://www.lappsgrid.org")
-            .version(Version.getVersion())
+            .version(versionString)
             .license(Uri.CC_BY_NC_SA)
             .licenseDesc('GOST is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US>`_')
             .requireFormats(Uri.TEXT, Uri.LIF)

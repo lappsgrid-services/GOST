@@ -1,10 +1,13 @@
 
 # Build the deployable war file.
 war:
+	awk '{printf("%d\n", $$1+1)}' build > build.tmp && mv build.tmp build
+	cp build src/main/resources
 	mvn package
 
 clean:
 	mvn clean
+	rm src/main/docker/*.war
 
 # Goals for building and deploying the Docker image.
 docker:

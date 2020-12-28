@@ -12,6 +12,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 cd $DIR
 
 VERSION=$(cat ../../../VERSION)
+BUILD=$(cat ../../../build)
 
 if [ "$VERSION" = "" ] ; then
 	VERSION="1.0.0"
