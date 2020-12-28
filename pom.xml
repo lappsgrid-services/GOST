@@ -15,7 +15,7 @@
     <name>GOST</name>
     <description>LAPP service for the Gene Ontology Semantic Tagger (GOST)</description>
     <properties>
-        <groovy.version>2.5.3</groovy.version>
+        <groovy.version>2.5.14</groovy.version>
         <api.version>2.0.1</api.version>
         <metadata.version>1.4.0-SNAPSHOT</metadata.version>
         <serialization.version>2.7.0-SNAPSHOT</serialization.version>
